@@ -4,10 +4,36 @@ import cover from '../images/cover.jpeg';
 import user from '../images/user.jpeg';
 
 import '../styles/App.scss';
+import { useState } from 'react';
+
 
 function App() {
   //funciones, variables, handles,
 
+
+  const [name, setName] = useState("");
+  const [slogan, setSlogan] = useState("");
+  const [repo, setRepo] = useState("");
+  const [demo, setDemo] = useState("");
+  const [technologies, setTechnologies] = useState("");
+  const [desc, setDesc] = useState("");
+
+  const handleInput = (ev) => {
+    const inputId = ev.target.id;
+    if(inputId==='name'){
+      setName(ev.target.value);
+    }else if(inputId==='slogan'){
+      setSlogan(ev.target.value);
+    }else if(inputId==='repo'){
+      setRepo(ev.target.value);
+    }else if(inputId==='demo'){
+    setDemo(ev.target.value);
+    }else if(inputId==='technologies'){
+    setTechnologies(ev.target.value);
+    }else if(inputId==='desc'){
+      setDesc(ev.target.value);
+    }
+  }
   //html
   return (
     <div className="container">
@@ -23,19 +49,30 @@ function App() {
               <p className="subtitle">Personal Project Card</p>
               <hr className="line" />
 
-              <h2 className="title">Elegant Workspace</h2>
-              <p className="slogan">Diseños Exclusivos</p>
+              <h2 className="title">{name ||'Elegant Workspace'}</h2>
+              <p className="slogan">{slogan || 'Diseños Exclusivos'}</p>
               <p className="desc">
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                {desc || `Lorem, ipsum dolor sit amet consectetur adipisicing elit.
                 Libero, delectus? Voluptates at hic aliquam porro ad suscipit
                 harum laboriosam saepe earum doloribus aperiam, ullam culpa
-                accusantium placeat odit corrupti ipsum!
+                accusantium placeat odit corrupti ipsum!`}
               </p>
               <section className="technologies">
-                <p className="text">React JS, MongoDB</p>
+                <p className="text">{technologies || 'React JS, MongoDB'}</p>
               </section>
-            </section>
 
+              <section className='demo'>
+              <i className="fa-solid fa-globe"></i>
+              <a href="{demo || ''}"></a>
+              </section>
+              
+              <section>
+              <i className="fa-brands fa-github"></i>  
+              </section>
+              
+
+            </section>
+            
             <section className="info-autor">
               <img className="image" src={user} alt="" />
               <p className="job">Full Stack Developer</p>
@@ -59,6 +96,7 @@ function App() {
               placeholder="Nombre del proyecto"
               name="name"
               id="name"
+              onChange={handleInput}
             />
             <input
               className="input"
@@ -66,6 +104,7 @@ function App() {
               name="slogan"
               id="slogan"
               placeholder="Slogan"
+              onChange={handleInput}
             />
             <input
               className="input"
@@ -73,6 +112,7 @@ function App() {
               name="repo"
               id="repo"
               placeholder="Repo"
+              onChange={handleInput}
             />
             <input
               className="input"
@@ -80,6 +120,7 @@ function App() {
               placeholder="Demo"
               name="demo"
               id="demo"
+              onChange={handleInput}
             />
             <input
               className="input"
@@ -87,6 +128,7 @@ function App() {
               placeholder="Tecnologías"
               name="technologies"
               id="technologies"
+              onChange={handleInput}
             />
             <textarea
               className="textarea"
@@ -94,6 +136,7 @@ function App() {
               placeholder="Descripción"
               name="desc"
               id="desc"
+              onChange={handleInput}
             ></textarea>
           </fieldset>
 
