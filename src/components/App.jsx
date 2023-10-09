@@ -61,15 +61,19 @@ function App() {
                 <p className="text">{technologies || 'React JS, MongoDB'}</p>
               </section>
 
-              <section className='demo'>
-              <i className="fa-solid fa-globe"></i>
-              <a href="{demo || ''}"></a>
+              <section className="demo repo">
+                <a href={demo || ""}><i className="fa-solid fa-globe"></i></a>
+                <a href={repo || ""}><i className="fa-brands fa-github"></i></a>
+              </section>
+
+              {/* <section className='demo'>
+              <a href={demo || ""}><i className="fa-solid fa-globe"></i></a>
               </section>
               
-              <section>
-              <i className="fa-brands fa-github"></i>  
-              </section>
-              
+              <section className='repo'>
+              <a href={repo || ""}><i className="fa-brands fa-github"></i></a>
+              </section> */}
+
 
             </section>
             
