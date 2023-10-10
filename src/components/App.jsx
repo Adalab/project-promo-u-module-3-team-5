@@ -19,36 +19,58 @@ function App() {
   const [autor, setAutor] = useState("");
   const [job, setJob] = useState("");
 
+  const [error, setError] = useState("");
+
   const handleInput = (ev) => {
     const inputId = ev.target.id;
+    const inputValue = ev.target.value;
 
-    const regex = /[a-zA-ZáéíóúüÁÉÍÓÚÜ]/;
+    /* const regex = /[a-zA-ZáéíóúüÁÉÍÓÚÜ]/;
 
-    if(letterValue === "" || regex.test(letterValue)){
-      setLastLetter(letterValue);
-    }
+    if(inputValue === "" || regex.test(inputValue)){
+      setLastLetter(inputValue);
+    } */
 
     if(inputId==='title'){
-      setTitle(ev.target.value);
+      setTitle(inputValue);
     }else if(inputId==='slogan'){
-      setSlogan(ev.target.value);
+      setSlogan(inputValue);
     }else if(inputId==='repo'){
-      setRepo(ev.target.value);
+      setRepo(inputValue);
     }else if(inputId==='demo'){
-    setDemo(ev.target.value);
+    setDemo(inputValue);
     }else if(inputId==='technologies'){
-    setTechnologies(ev.target.value);
+    setTechnologies(inputValue);
     }else if(inputId==='desc'){
-      setDesc(ev.target.value);
+      setDesc(inputValue);
     }else if(inputId==='autor'){
-      setAutor(ev.target.value);
+      setAutor(inputValue);
     }else if(inputId==='job'){
-      setJob(ev.target.value);
+      setJob(inputValue);
     }
   }
 
-  const handleClickCreateCard = (ev) => {
+  const handleClickCreateCard = () => {
     console.log("handleClickCreateCard, holi");
+    
+    // inputValue === ""? console.log("rellena los datos") : console.log("todo ok!")
+    if (title === "" ||
+        slogan === "" ||
+        repo === "" ||
+        demo === "" ||
+        technologies === "" ||
+        desc === "" ||
+        autor === "" ||
+        job === "") {
+          console.log("Te falta rellenar")
+          setError("Te has dejado campos por rellenar")
+    } else {
+      setError("")
+    }
+  }
+
+  const handleForm = (ev) => {
+    ev.preventDefault();
   }
   
   //html
@@ -74,14 +96,15 @@ function App() {
                 harum laboriosam saepe earum doloribus aperiam, ullam culpa
                 accusantium placeat odit corrupti ipsum!`}
               </p>
-              <section className="technologies">
-                <p className="text">{technologies || 'React JS, MongoDB'}</p>
-              </section>
-
-              <section className="demo repo">
-                <a href={demo || ""}><i className="fa-solid fa-globe"></i></a>
-                <a href={repo || ""}><i className="fa-brands fa-github"></i></a>
-              </section>
+              <div className="techDemoRepo">
+                <section className="technologies">
+                  <p className="text">{technologies || 'React JS, MongoDB'}</p>
+                </section>
+                <section className="demo repo">
+                  <a href={demo || ""}><i className="fa-solid fa-globe"></i></a>
+                  <a href={repo || ""}><i className="fa-brands fa-github"></i></a>
+                </section>
+              </div>
 
             </section>
             
@@ -101,63 +124,70 @@ function App() {
             <hr className="line" />
           </section>
 
-          <fieldset className="project">
-            <input
-              className="input"
-              type="text"
-              placeholder="Nombre del proyecto"
-              name="title"
-              id="title"
-              value={title}
-              onChange={handleInput}
-              required
-            />
-            <input
-              className="input"
-              type="text"
-              name="slogan"
-              id="slogan"
-              placeholder="Slogan"
-              value={slogan}
-              onChange={handleInput}
-            />
-            <input
-              className="input"
-              type="text"
-              name="repo"
-              id="repo"
-              placeholder="Repo"
-              value={repo}
-              onChange={handleInput}
-            />
-            <input
-              className="input"
-              type="text"
-              placeholder="Demo"
-              name="demo"
-              id="demo"
-              value={demo}
-              onChange={handleInput}
-            />
-            <input
-              className="input"
-              type="text"
-              placeholder="Tecnologías"
-              name="technologies"
-              id="technologies"
-              value={technologies}
-              onChange={handleInput}
-            />
-            <textarea
-              className="textarea"
-              type="text"
-              placeholder="Descripción"
-              name="desc"
-              id="desc"
-              value={desc}
-              onChange={handleInput}
-            ></textarea>
-          </fieldset>
+          <form onSubmit={handleForm}>
+            <fieldset className="project">
+              <input
+                className="input"
+                type="text"
+                placeholder="Nombre del proyecto"
+                name="title"
+                id="title"
+                value={title}
+                onChange={handleInput}
+                required
+              />
+              <input
+                className="input"
+                type="text"
+                name="slogan"
+                id="slogan"
+                placeholder="Slogan"
+                value={slogan}
+                onChange={handleInput}
+                required
+              />
+              <input
+                className="input"
+                type="text"
+                name="repo"
+                id="repo"
+                placeholder="https://github.com/mariaPepina/repositorioPepino"
+                value={repo}
+                onChange={handleInput}
+                required
+              />
+              <input
+                className="input"
+                type="text"
+                placeholder="https://maria-pepina.com "
+                name="demo"
+                id="demo"
+                value={demo}
+                onChange={handleInput}
+                required
+              />
+              <input
+                className="input"
+                type="text"
+                placeholder="Tecnologías"
+                name="technologies"
+                id="technologies"
+                value={technologies}
+                onChange={handleInput}
+                required
+              />
+              <textarea
+                className="textarea"
+                type="text"
+                placeholder="Descripción"
+                name="desc"
+                id="desc"
+                value={desc}
+                onChange={handleInput}
+                required
+              ></textarea>
+            </fieldset>
+          
 
           <section className="ask-info">
             <p className="subtitle">Cuéntanos sobre la autora</p>
@@ -173,6 +203,7 @@ function App() {
               id="autor"
               value={autor}
               onChange={handleInput}
+              required
             />
             <input
               className="input"
@@ -182,6 +213,7 @@ function App() {
               id="job"
               value={job}
               onChange={handleInput}
+              required
             />
           </fieldset>
 
@@ -194,9 +226,10 @@ function App() {
               Crear Tarjeta
             </button>
           </section>
+          </form>
 
           <section className="card">
-            <span className=""> La tarjeta ha sido creada: </span>
+            <span className="">{error ||'La tarjeta ha sido creada:'}  </span>
             <a href="" className="" target="_blank" rel="noreferrer">
               {' '}
             </a>
