@@ -11,17 +11,19 @@ function App() {
   //funciones, variables, handles,
 
 
-  const [name, setName] = useState("");
+  const [title, setTitle] = useState("");
   const [slogan, setSlogan] = useState("");
   const [repo, setRepo] = useState("");
   const [demo, setDemo] = useState("");
   const [technologies, setTechnologies] = useState("");
   const [desc, setDesc] = useState("");
+  const [autor, setAutor] = useState("");
+  const [job, setJob] = useState("");
 
   const handleInput = (ev) => {
     const inputId = ev.target.id;
-    if(inputId==='name'){
-      setName(ev.target.value);
+    if(inputId==='title'){
+      setTitle(ev.target.value);
     }else if(inputId==='slogan'){
       setSlogan(ev.target.value);
     }else if(inputId==='repo'){
@@ -32,6 +34,10 @@ function App() {
     setTechnologies(ev.target.value);
     }else if(inputId==='desc'){
       setDesc(ev.target.value);
+    }else if(inputId==='autor'){
+      setAutor(ev.target.value);
+    }else if(inputId==='job'){
+      setJob(ev.target.value);
     }
   }
   //html
@@ -49,7 +55,7 @@ function App() {
               <p className="subtitle">Personal Project Card</p>
               <hr className="line" />
 
-              <h2 className="title">{name ||'Elegant Workspace'}</h2>
+              <h2 className="title">{title ||'Elegant Workspace'}</h2>
               <p className="slogan">{slogan || 'Diseños Exclusivos'}</p>
               <p className="desc">
                 {desc || `Lorem, ipsum dolor sit amet consectetur adipisicing elit.
@@ -66,21 +72,12 @@ function App() {
                 <a href={repo || ""}><i className="fa-brands fa-github"></i></a>
               </section>
 
-              {/* <section className='demo'>
-              <a href={demo || ""}><i className="fa-solid fa-globe"></i></a>
-              </section>
-              
-              <section className='repo'>
-              <a href={repo || ""}><i className="fa-brands fa-github"></i></a>
-              </section> */}
-
-
             </section>
             
             <section className="info-autor">
               <img className="image" src={user} alt="" />
-              <p className="job">Full Stack Developer</p>
-              <p className="name">Emmelie Björklund</p>
+              <p className="job">{job || 'Full Stack Developer'}</p>
+              <p className="name">{autor || 'Emmelie Björklund'} </p>
             </section>
           </section>
         </section>
@@ -98,8 +95,8 @@ function App() {
               className="input"
               type="text"
               placeholder="Nombre del proyecto"
-              name="name"
-              id="name"
+              name="title"
+              id="title"
               onChange={handleInput}
             />
             <input
@@ -156,6 +153,7 @@ function App() {
               placeholder="Nombre"
               name="autor"
               id="autor"
+              onChange={handleInput}
             />
             <input
               className="input"
@@ -163,6 +161,7 @@ function App() {
               placeholder="Trabajo"
               name="job"
               id="job"
+              onChange={handleInput}
             />
           </fieldset>
 
