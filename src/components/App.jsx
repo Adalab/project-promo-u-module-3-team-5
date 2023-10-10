@@ -10,7 +10,6 @@ import { useState } from 'react';
 function App() {
   //funciones, variables, handles,
 
-
   const [title, setTitle] = useState("");
   const [slogan, setSlogan] = useState("");
   const [repo, setRepo] = useState("");
@@ -22,6 +21,13 @@ function App() {
 
   const handleInput = (ev) => {
     const inputId = ev.target.id;
+
+    const regex = /[a-zA-ZáéíóúüÁÉÍÓÚÜ]/;
+
+    if(letterValue === "" || regex.test(letterValue)){
+      setLastLetter(letterValue);
+    }
+
     if(inputId==='title'){
       setTitle(ev.target.value);
     }else if(inputId==='slogan'){
@@ -40,6 +46,11 @@ function App() {
       setJob(ev.target.value);
     }
   }
+
+  const handleClickCreateCard = (ev) => {
+    console.log("handleClickCreateCard, holi");
+  }
+  
   //html
   return (
     <div className="container">
@@ -98,6 +109,7 @@ function App() {
               name="title"
               id="title"
               onChange={handleInput}
+              required
             />
             <input
               className="input"
@@ -170,7 +182,7 @@ function App() {
             <button className="btn">Subir foto de autora</button>
           </section>
           <section className="buttons-img">
-            <button className="btn-large" onClick="{handleClickCreateCard}">
+            <button className="btn-large" onClick={handleClickCreateCard}>
               Crear Tarjeta
             </button>
           </section>
