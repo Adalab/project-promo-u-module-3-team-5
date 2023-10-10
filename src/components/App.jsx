@@ -108,6 +108,7 @@ function App() {
               placeholder="Nombre del proyecto"
               name="title"
               id="title"
+              value={title}
               onChange={handleInput}
               required
             />
@@ -117,6 +118,7 @@ function App() {
               name="slogan"
               id="slogan"
               placeholder="Slogan"
+              value={slogan}
               onChange={handleInput}
             />
             <input
@@ -125,6 +127,7 @@ function App() {
               name="repo"
               id="repo"
               placeholder="Repo"
+              value={repo}
               onChange={handleInput}
             />
             <input
@@ -133,6 +136,7 @@ function App() {
               placeholder="Demo"
               name="demo"
               id="demo"
+              value={demo}
               onChange={handleInput}
             />
             <input
@@ -141,6 +145,7 @@ function App() {
               placeholder="Tecnologías"
               name="technologies"
               id="technologies"
+              value={technologies}
               onChange={handleInput}
             />
             <textarea
@@ -149,6 +154,7 @@ function App() {
               placeholder="Descripción"
               name="desc"
               id="desc"
+              value={desc}
               onChange={handleInput}
             ></textarea>
           </fieldset>
@@ -165,6 +171,7 @@ function App() {
               placeholder="Nombre"
               name="autor"
               id="autor"
+              value={autor}
               onChange={handleInput}
             />
             <input
@@ -173,6 +180,7 @@ function App() {
               placeholder="Trabajo"
               name="job"
               id="job"
+              value={job}
               onChange={handleInput}
             />
           </fieldset>
