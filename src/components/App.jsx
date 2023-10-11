@@ -22,8 +22,11 @@ function App() {
   const [data, setData] = useState(dataObject);
 
   const [error, setError] = useState('');
+  const [cardSectionIsVisible, setCardSectionIsVisible] = useState(false);
+  const [cardUrl, setCardUrl] = useState('https://enlace-de-muestra.es/');
 
   const handleInput = (ev) => {
+    setCardSectionIsVisible(false);
     const inputId = ev.target.id;
     const inputValue = ev.target.value;
 
@@ -45,6 +48,7 @@ function App() {
     } else {
       setError('');
     }
+    setCardSectionIsVisible(true);
   };
 
   const handleForm = (ev) => {
@@ -77,7 +81,9 @@ function App() {
               </p>
               <div className="techDemoRepo">
                 <section className="technologies">
-                  <p className="text">{data.technologies || 'React JS, MongoDB'}</p>
+                  <p className="text">
+                    {data.technologies || 'React JS, MongoDB'}
+                  </p>
                 </section>
                 <section className="demo repo">
                   <a href={data.demo || ''}>
@@ -208,18 +214,16 @@ function App() {
               </button>
             </section>
           </form>
-
-          <section className="card">
+          
+          <section className={`card ${cardSectionIsVisible ? '' : 'hidden'}`}>
             <span className="">{error || 'La tarjeta ha sido creada:'} </span>
             <a
-              href="https://adalab.es/"
-              className=""
+              href={cardUrl}
+              className={error !== '' ? 'hidden' : ''}
               target="_blank"
               rel="noreferrer"
             >
-              {' '}
-              https://adalab.es/
-              {/* {' '} */}
+              {cardUrl}
             </a>
           </section>
         </section>
