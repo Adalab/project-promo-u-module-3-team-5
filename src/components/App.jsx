@@ -6,73 +6,51 @@ import user from '../images/user.jpeg';
 import '../styles/App.scss';
 import { useState } from 'react';
 
-
 function App() {
   //funciones, variables, handles,
 
-  const [title, setTitle] = useState("");
-  const [slogan, setSlogan] = useState("");
-  const [repo, setRepo] = useState("");
-  const [demo, setDemo] = useState("");
-  const [technologies, setTechnologies] = useState("");
-  const [desc, setDesc] = useState("");
-  const [autor, setAutor] = useState("");
-  const [job, setJob] = useState("");
+  const dataObject = {
+    title: '',
+    slogan: '',
+    repo: '',
+    demo: '',
+    technologies: '',
+    desc: '',
+    autor: '',
+    job: '',
+  };
+  const [data, setData] = useState(dataObject);
 
-  const [error, setError] = useState("");
+  const [error, setError] = useState('');
 
   const handleInput = (ev) => {
     const inputId = ev.target.id;
     const inputValue = ev.target.value;
 
-    /* const regex = /[a-zA-ZáéíóúüÁÉÍÓÚÜ]/;
-
-    if(inputValue === "" || regex.test(inputValue)){
-      setLastLetter(inputValue);
-    } */
-
-    if(inputId==='title'){
-      setTitle(inputValue);
-    }else if(inputId==='slogan'){
-      setSlogan(inputValue);
-    }else if(inputId==='repo'){
-      setRepo(inputValue);
-    }else if(inputId==='demo'){
-    setDemo(inputValue);
-    }else if(inputId==='technologies'){
-    setTechnologies(inputValue);
-    }else if(inputId==='desc'){
-      setDesc(inputValue);
-    }else if(inputId==='autor'){
-      setAutor(inputValue);
-    }else if(inputId==='job'){
-      setJob(inputValue);
-    }
-  }
+    setData({ ...data, [inputId]: inputValue });
+  };
 
   const handleClickCreateCard = () => {
-    console.log("handleClickCreateCard, holi");
-    
-    // inputValue === ""? console.log("rellena los datos") : console.log("todo ok!")
-    if (title === "" ||
-        slogan === "" ||
-        repo === "" ||
-        demo === "" ||
-        technologies === "" ||
-        desc === "" ||
-        autor === "" ||
-        job === "") {
-          console.log("Te falta rellenar")
-          setError("Te has dejado campos por rellenar")
+    if (
+      data.title === '' ||
+      data.slogan === '' ||
+      data.repo === '' ||
+      data.demo === '' ||
+      data.technologies === '' ||
+      data.desc === '' ||
+      data.autor === '' ||
+      data.job === ''
+    ) {
+      setError('Te has dejado campos por rellenar');
     } else {
-      setError("")
+      setError('');
     }
-  }
+  };
 
   const handleForm = (ev) => {
     ev.preventDefault();
-  }
-  
+  };
+
   //html
   return (
     <div className="container">
@@ -88,30 +66,34 @@ function App() {
               <p className="subtitle">Personal Project Card</p>
               <hr className="line" />
 
-              <h2 className="title">{title ||'Elegant Workspace'}</h2>
-              <p className="slogan">{slogan || 'Diseños Exclusivos'}</p>
+              <h2 className="title">{data.title || 'Elegant Workspace'}</h2>
+              <p className="slogan">{data.slogan || 'Diseños Exclusivos'}</p>
               <p className="desc">
-                {desc || `Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                {data.desc ||
+                  `Lorem, ipsum dolor sit amet consectetur adipisicing elit.
                 Libero, delectus? Voluptates at hic aliquam porro ad suscipit
                 harum laboriosam saepe earum doloribus aperiam, ullam culpa
                 accusantium placeat odit corrupti ipsum!`}
               </p>
               <div className="techDemoRepo">
                 <section className="technologies">
-                  <p className="text">{technologies || 'React JS, MongoDB'}</p>
+                  <p className="text">{data.technologies || 'React JS, MongoDB'}</p>
                 </section>
                 <section className="demo repo">
-                  <a href={demo || ""}><i className="fa-solid fa-globe"></i></a>
-                  <a href={repo || ""}><i className="fa-brands fa-github"></i></a>
+                  <a href={data.demo || ''}>
+                    <i className="fa-solid fa-globe"></i>
+                  </a>
+                  <a href={data.repo || ''}>
+                    <i className="fa-brands fa-github"></i>
+                  </a>
                 </section>
               </div>
-
             </section>
-            
+
             <section className="info-autor">
               <img className="image" src={user} alt="" />
-              <p className="job">{job || 'Full Stack Developer'}</p>
-              <p className="name">{autor || 'Emmelie Björklund'} </p>
+              <p className="job">{data.job || 'Full Stack Developer'}</p>
+              <p className="name">{data.autor || 'Emmelie Björklund'} </p>
             </section>
           </section>
         </section>
@@ -132,7 +114,7 @@ function App() {
                 placeholder="Nombre del proyecto"
                 name="title"
                 id="title"
-                value={title}
+                value={data.title}
                 onChange={handleInput}
                 required
               />
@@ -142,7 +124,7 @@ function App() {
                 name="slogan"
                 id="slogan"
                 placeholder="Slogan"
-                value={slogan}
+                value={data.slogan}
                 onChange={handleInput}
                 required
               />
@@ -152,17 +134,17 @@ function App() {
                 name="repo"
                 id="repo"
                 placeholder="https://github.com/mariaPepina/repositorioPepino"
-                value={repo}
+                value={data.repo}
                 onChange={handleInput}
                 required
               />
               <input
                 className="input"
                 type="text"
-                placeholder="https://maria-pepina.com "
+                placeholder="https://maria-pepina.com"
                 name="demo"
                 id="demo"
-                value={demo}
+                value={data.demo}
                 onChange={handleInput}
                 required
               />
@@ -172,7 +154,7 @@ function App() {
                 placeholder="Tecnologías"
                 name="technologies"
                 id="technologies"
-                value={technologies}
+                value={data.technologies}
                 onChange={handleInput}
                 required
               />
@@ -182,56 +164,62 @@ function App() {
                 placeholder="Descripción"
                 name="desc"
                 id="desc"
-                value={desc}
+                value={data.desc}
                 onChange={handleInput}
                 required
               ></textarea>
             </fieldset>
-          
 
-          <section className="ask-info">
-            <p className="subtitle">Cuéntanos sobre la autora</p>
-            <hr className="line" />
-          </section>
+            <section className="ask-info">
+              <p className="subtitle">Cuéntanos sobre la autora</p>
+              <hr className="line" />
+            </section>
 
-          <fieldset className="autor">
-            <input
-              className="input"
-              type="text"
-              placeholder="Nombre"
-              name="autor"
-              id="autor"
-              value={autor}
-              onChange={handleInput}
-              required
-            />
-            <input
-              className="input"
-              type="text"
-              placeholder="Trabajo"
-              name="job"
-              id="job"
-              value={job}
-              onChange={handleInput}
-              required
-            />
-          </fieldset>
+            <fieldset className="autor">
+              <input
+                className="input"
+                type="text"
+                placeholder="Nombre"
+                name="autor"
+                id="autor"
+                value={data.autor}
+                onChange={handleInput}
+                required
+              />
+              <input
+                className="input"
+                type="text"
+                placeholder="Trabajo"
+                name="job"
+                id="job"
+                value={data.job}
+                onChange={handleInput}
+                required
+              />
+            </fieldset>
 
-          <section className="buttons-img">
-            <button className="btn">Subir foto de proyecto</button>
-            <button className="btn">Subir foto de autora</button>
-          </section>
-          <section className="buttons-img">
-            <button className="btn-large" onClick={handleClickCreateCard}>
-              Crear Tarjeta
-            </button>
-          </section>
+            <section className="buttons-img">
+              <button className="btn">Subir foto de proyecto</button>
+              <button className="btn">Subir foto de autora</button>
+            </section>
+            <section className="buttons-img">
+              <button className="btn-large" onClick={handleClickCreateCard}>
+                Crear Tarjeta
+              </button>
+            </section>
           </form>
 
           <section className="card">
-            <span className="">{error ||'La tarjeta ha sido creada:'}  </span>
-            <a href="" className="" target="_blank" rel="noreferrer">
+            <span className="">{error || 'La tarjeta ha sido creada:'} </span>
+            <a
+              href="https://adalab.es/"
+              className=""
+              target="_blank"
+              rel="noreferrer"
+            >
               {' '}
+              https://adalab.es/
+              {/* {' '} */}
             </a>
           </section>
         </section>
