@@ -334,8 +334,14 @@ a {
   color: white;
   text-align: center;
   padding: 20px;
+  display: flex;
+  flex-direction: column;
 }
 
 .hidden {
   display: none;
+}
+
+.red{
+  color: red;
 }

@@ -216,7 +216,7 @@ function App() {
           </form>
           
           <section className={`card ${cardSectionIsVisible ? '' : 'hidden'}`}>
-            <span className="">{error || 'La tarjeta ha sido creada:'} </span>
+            <span className={error === '' ? '' : 'red'}>{error || 'La tarjeta ha sido creada:'} </span>
             <a
               href={cardUrl}
               className={error !== '' ? 'hidden' : ''}
