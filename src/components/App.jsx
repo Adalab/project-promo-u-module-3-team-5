@@ -1,29 +1,31 @@
 //imports dependencias, imagenes, componentes, stylos
 
-import cover from '../images/cover.jpeg';
-import user from '../images/user.jpeg';
+import cover from "../images/cover.jpeg";
+import user from "../images/user.jpeg";
 
-import '../styles/App.scss';
-import { useState } from 'react';
+import "../styles/App.scss";
+import { useState } from "react";
 
 function App() {
   //funciones, variables, handles,
 
   const dataObject = {
-    title: '',
-    slogan: '',
-    repo: '',
-    demo: '',
-    technologies: '',
-    desc: '',
-    autor: '',
-    job: '',
+    name: "",
+    slogan: "",
+    repo: "",
+    demo: "",
+    technologies: "",
+    desc: "",
+    autor: "",
+    job: "",
+    image:"https://placedog.net/480/580?r",
+    photo: "https://placekitten.com/600/500",
   };
   const [data, setData] = useState(dataObject);
 
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
   const [cardSectionIsVisible, setCardSectionIsVisible] = useState(false);
-  const [cardUrl, setCardUrl] = useState('https://enlace-de-muestra.es/');
+  const [cardUrl, setCardUrl] = useState("https://enlace-de-muestra.es/");
 
   const handleInput = (ev) => {
     setCardSectionIsVisible(false);
@@ -33,20 +35,41 @@ function App() {
     setData({ ...data, [inputId]: inputValue });
   };
 
+  const fetchInfoCard = () => {
+    fetch("https://dev.adalab.es/api/projectCard", {
+      method: "post",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    })
+      .then((response) => response.json())
+      .then((responseJSON) => {
+        console.log(responseJSON);
+        if (responseJSON.success === false) {
+          setError("Error en el servidor");
+        } else {
+          setError("");
+          setCardUrl(responseJSON.cardURL);
+          // localStorage.setItem('datainfo', JSON.stringify(data));
+        }
+      });
+  };
+
   const handleClickCreateCard = () => {
+   
     if (
-      data.title === '' ||
-      data.slogan === '' ||
-      data.repo === '' ||
-      data.demo === '' ||
-      data.technologies === '' ||
-      data.desc === '' ||
-      data.autor === '' ||
-      data.job === ''
+      data.name === "" ||
+      data.slogan === "" ||
+      data.repo === "" ||
+      data.demo === "" ||
+      data.technologies === "" ||
+      data.desc === "" ||
+      data.autor === "" ||
+      data.job === ""
     ) {
-      setError('Te has dejado campos por rellenar');
+      setError("Te has dejado campos por rellenar");
     } else {
-      setError('');
+      fetchInfoCard();
+      // setError("");
     }
     setCardSectionIsVisible(true);
   };
@@ -70,8 +93,8 @@ function App() {
               <p className="subtitle">Personal Project Card</p>
               <hr className="line" />
 
-              <h2 className="title">{data.title || 'Elegant Workspace'}</h2>
-              <p className="slogan">{data.slogan || 'Diseños Exclusivos'}</p>
+              <h2 className="title">{data.name || "Elegant Workspace"}</h2>
+              <p className="slogan">{data.slogan || "Diseños Exclusivos"}</p>
               <p className="desc">
                 {data.desc ||
                   `Lorem, ipsum dolor sit amet consectetur adipisicing elit.
@@ -82,14 +105,14 @@ function App() {
               <div className="techDemoRepo">
                 <section className="technologies">
                   <p className="text">
-                    {data.technologies || 'React JS, MongoDB'}
+                    {data.technologies || "React JS, MongoDB"}
                   </p>
                 </section>
                 <section className="demo repo">
-                  <a href={data.demo || ''}>
+                  <a href={data.demo || ""}>
                     <i className="fa-solid fa-globe"></i>
                   </a>
-                  <a href={data.repo || ''}>
+                  <a href={data.repo || ""}>
                     <i className="fa-brands fa-github"></i>
                   </a>
                 </section>
@@ -98,8 +121,8 @@ function App() {
 
             <section className="info-autor">
               <img className="image" src={user} alt="" />
-              <p className="job">{data.job || 'Full Stack Developer'}</p>
-              <p className="name">{data.autor || 'Emmelie Björklund'} </p>
+              <p className="job">{data.job || "Full Stack Developer"}</p>
+              <p className="name">{data.autor || "Emmelie Björklund"} </p>
             </section>
           </section>
         </section>
@@ -118,9 +141,9 @@ function App() {
                 className="input"
                 type="text"
                 placeholder="Nombre del proyecto"
-                name="title"
-                id="title"
-                value={data.title}
+                name="name"
+                id="name"
+                value={data.name}
                 onChange={handleInput}
                 required
               />
@@ -214,12 +237,14 @@ function App() {
               </button>
             </section>
           </form>
-          
-          <section className={`card ${cardSectionIsVisible ? '' : 'hidden'}`}>
-            <span className={error === '' ? '' : 'red'}>{error || 'La tarjeta ha sido creada:'} </span>
+
+          <section className={`card ${cardSectionIsVisible ? "" : "hidden"}`}>
+            <span className={error === "" ? "" : "red"}>
+              {error || "La tarjeta ha sido creada:"}{" "}
+            </span>
             <a
               href={cardUrl}
-              className={error !== '' ? 'hidden' : ''}
+              className={error !== "" ? "hidden" : ""}
               target="_blank"
               rel="noreferrer"
             >
