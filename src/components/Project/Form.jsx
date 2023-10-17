@@ -1,4 +1,5 @@
 
+import "../../styles/layouts/Form.scss"
 function Form () {
     return (
         <section className="form">

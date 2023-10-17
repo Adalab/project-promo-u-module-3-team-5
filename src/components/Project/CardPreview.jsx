@@ -1,5 +1,9 @@
 
+import "../../styles/layouts/CardPreview.scss"
+
 function CardPreview () {
+
+  
     return(
         <section className="preview">
         <img className="image" src={cover} alt="" />

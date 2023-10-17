@@ -1,3 +1,5 @@
+
+import "../../styles/layouts/Header.scss"
 function Header() {
   return (
     <>
