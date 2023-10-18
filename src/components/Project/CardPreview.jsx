@@ -1,7 +1,9 @@
 
 import "../../styles/layouts/CardPreview.scss"
+import cover from "../../images/cover.jpeg";
+import user from "../../images/user.jpeg";
 
-function CardPreview () {
+function CardPreview ({data}) {
 
   
     return(
