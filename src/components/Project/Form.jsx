@@ -1,4 +1,5 @@
 import '../../styles/layouts/Form.scss';
+import PropTypes from "prop-types";
 
 function Form({ data, handleClickInput, handleClickCreateCard, cardSectionIsVisible, cardUrl, error }) {
   const handleInput = (ev) => {
@@ -145,5 +146,12 @@ function Form({ data, handleClickInput, handleClickCreateCard, cardSectionIsVisi
     </section>
   );
 }
-
+Form.propTypes = {
+  data: PropTypes.object.isRequired,
+  handleClickInput: PropTypes.func.isRequired,
+  handleClickCreateCard: PropTypes.func.isRequired,
+  cardSectionIsVisible: PropTypes.bool.isRequired,
+  cardUrl: PropTypes.string.isRequired,
+  error: PropTypes.string.isRequired,
+};
 export default Form;
