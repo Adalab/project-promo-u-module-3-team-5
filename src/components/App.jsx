@@ -27,13 +27,6 @@ function App() {
   const [cardSectionIsVisible, setCardSectionIsVisible] = useState(false);
   const [cardUrl, setCardUrl] = useState('https://enlace-de-muestra.es/');
 
-  // const handleInput = (ev) => {
-  //   setCardSectionIsVisible(false);
-  //   const inputId = ev.target.id;
-  //   const inputValue = ev.target.value;
-
-  //   setData({ ...data, [inputId]: inputValue });
-  // };
   const handleClickInput = (value, id) => {
     setCardSectionIsVisible(false);
     setData({ ...data, [id]: value });

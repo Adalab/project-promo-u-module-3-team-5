@@ -19,10 +19,7 @@ function CardPreview ({data}) {
             <p className="slogan">{data.slogan || "Diseños Exclusivos"}</p>
             <p className="desc">
               {data.desc ||
-                `Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-              Libero, delectus? Voluptates at hic aliquam porro ad suscipit
-              harum laboriosam saepe earum doloribus aperiam, ullam culpa
-              accusantium placeat odit corrupti ipsum!`}
+                `Lorem, ipsum dolor sit amet consectetur adipisicing elit. Libero, delectus? Voluptates at hic aliquam porro ad suscipit harum`}
             </p>
             <div className="techDemoRepo">
               <section className="technologies">

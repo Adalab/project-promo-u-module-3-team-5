@@ -23,62 +23,62 @@ function Form({ data, handleClickInput, handleClickCreateCard, cardSectionIsVisi
         }}
       >
         <fieldset className="project">
-          <label>Nombre del proyecto</label>
+          <label className="label">Nombre del proyecto</label>
           <input
             className="input"
             type="text"
-            placeholder="Proyecto cohete"
+            placeholder="Nombre del proyecto: Mi proyecto"
             name="name"
             id="name"
             value={data.name}
             onChange={handleInput}
             required
           />
-          <label>Slogan</label>
+          <label className="label">Slogan</label>
           <input
             className="input"
             type="text"
             name="slogan"
             id="slogan"
-            placeholder="Slogan spacial"
+            placeholder="Slogan: Mi slogan"
             value={data.slogan}
             onChange={handleInput}
             required
           />
-          <label>Nombre Repositorio</label>
+          <label className="label">Nombre Repositorio</label>
           <input
             className="input"
             type="text"
             name="repo"
             id="repo"
-            placeholder="https://github.com/mariaPepina/repositorioPepino"
+            placeholder="Repo: www.github.com/user/repo"
             value={data.repo}
             onChange={handleInput}
             required
           />
-          <label>Nombre usuaria GitHub</label>
+          <label className="label">Nombre de tu Web</label>
           <input
             className="input"
             type="text"
-            placeholder="https://maria-pepina.com"
+            placeholder="Web: www.maria-pepina.com"
             name="demo"
             id="demo"
             value={data.demo}
             onChange={handleInput}
             required
           />
-          <label>Tecnologías empleadas</label>
+          <label className="label">Tecnologías empleadas</label>
           <input
             className="input"
             type="text"
-            placeholder="Tecnologías"
+            placeholder="Tecnologías: React JS, MongoDB"
             name="technologies"
             id="technologies"
             value={data.technologies}
             onChange={handleInput}
             required
           />
-          <label>Descripción</label>
+          <label className="label">Descripción</label>
           <textarea
             className="textarea"
             type="text"
@@ -87,6 +87,7 @@ function Form({ data, handleClickInput, handleClickCreateCard, cardSectionIsVisi
             id="desc"
             value={data.desc}
             onChange={handleInput}
+            maxLength="128"
             required
           ></textarea>
         </fieldset>
