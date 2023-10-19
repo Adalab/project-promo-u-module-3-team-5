@@ -5,6 +5,8 @@ import Header from './Header/Header';
 // import Footer from "./Footer/Footer";
 import Form from './Project/Form';
 import CardPreview from './Project/CardPreview';
+import Landing from './Landing/Landing';
+import { Route, Routes } from 'react-router';
 
 function App() {
   //funciones, variables, handles,
@@ -71,19 +73,29 @@ function App() {
 
   //html
   return (
-    <div className="container">
-      <Header />
-      <main className="main">
-        <CardPreview data={data} />
-        <Form
-          data={data}
-          handleClickInput={handleClickInput}
-          handleClickCreateCard={handleClickCreateCard}
-          cardSectionIsVisible={cardSectionIsVisible}
-          cardUrl={cardUrl}
-          error={error}
+    <div className='container'>
+      <Routes>
+        <Route path='/' element={<Landing />} />
+        <Route
+          path='/create-projects'
+          element={
+            <>
+              <Header />
+              <main className='main'>
+                <CardPreview data={data} />
+                <Form
+                  data={data}
+                  handleClickInput={handleClickInput}
+                  handleClickCreateCard={handleClickCreateCard}
+                  cardSectionIsVisible={cardSectionIsVisible}
+                  cardUrl={cardUrl}
+                  error={error}
+                />
+              </main>
+            </>
+          }
         />
-      </main>
+      </Routes>
     </div>
   );
 }
