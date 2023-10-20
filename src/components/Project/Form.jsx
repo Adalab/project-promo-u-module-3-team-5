@@ -1,12 +1,16 @@
 import '../../styles/layouts/Form.scss';
 import PropTypes from "prop-types";
+import GetAvatar from "../GetAvatar";
 
-function Form({ data, handleClickInput, handleClickCreateCard, cardSectionIsVisible, cardUrl, error }) {
+function Form({ data, handleClickInput, handleClickCreateCard, cardSectionIsVisible, cardUrl, error, avatar, updateAvatar }) {
   const handleInput = (ev) => {
     const inputValue = ev.target.value;
     const inputId = ev.target.id;
     handleClickInput(inputValue, inputId);
   };
+  // const handleImg = () => {
+  //   updateAvatar(avatar);
+  // }
 
   return (
     <section className="form">
@@ -121,9 +125,10 @@ function Form({ data, handleClickInput, handleClickCreateCard, cardSectionIsVisi
         </fieldset>
 
         <section className="buttons-img">
-          <button className="btn">Subir foto de proyecto</button>
-          <button className="btn">Subir foto de autora</button>
+        <GetAvatar className='btn' avatar={avatar} updateAvatar={updateAvatar} text='Subir foto de proyecto'/>            
+          <GetAvatar className='btn' avatar={avatar} updateAvatar={updateAvatar} text='Subir foto de autora'/>  
         </section>
+
         <section className="buttons-img">
           <button className="btn-large" onClick={handleClickCreateCard}>
             Crear Tarjeta
