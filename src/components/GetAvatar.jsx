@@ -2,27 +2,20 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import '../styles/GetAvatar.css';
 
-function GetAvatar({updateAvatar, text}) {
-  
+function GetAvatar({ updateAvatar, text }) {
   const fr = new FileReader();
-  const myFileField = React.createRef(); 
+  const myFileField = React.createRef();
 
-  const uploadImage = (ev) => {  
-    //console.log('La usuaria ha abierto la ventana para elegir ficheros');   
-    //console.log('La usuaria ha elegido los ficheros', ev.currentTarget.files);
-    /* console.log(
-      'El primero de los ficheros elegidos es',
-      ev.currentTarget.files[0]
-    );  */  
+  const uploadImage = (ev) => {
     if (ev.currentTarget.files.length > 0) {
-         const myFile = ev.currentTarget.files[0];     
+      const myFile = ev.currentTarget.files[0];
       fr.addEventListener('load', getImage);
       fr.readAsDataURL(myFile);
     }
   };
 
-  const getImage = () => {   
-    const image = fr.result;   
+  const getImage = () => {
+    const image = fr.result;
     updateAvatar(image);
   };
 
@@ -37,19 +30,13 @@ function GetAvatar({updateAvatar, text}) {
           onChange={uploadImage}
         />
       </label>
-
-      {/* <div
-        className="get-avatar__preview"
-        style={{ backgroundImage: `url(${avatar})` }}
-      ></div> */}
     </div>
   );
 }
 
 GetAvatar.propTypes = {
-  //avatar: PropTypes.string,
-  updateAvatar: PropTypes.func.isRequired,
-  text: PropTypes.string
+  updateAvatar: PropTypes.func,
+  text: PropTypes.string,
 };
 
 export default GetAvatar;

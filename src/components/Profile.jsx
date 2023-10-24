@@ -1,5 +1,3 @@
-
-// import React from 'react';
 import PropTypes from 'prop-types';
 import defaultAvatar from '../images/faviconNuevo.png';
 import '../styles/Profile.css';
@@ -17,7 +15,7 @@ function Profile(props) {
 }
 
 Profile.propTypes = {
-  avatar: PropTypes.string.isRequired,
+  avatar: PropTypes.string,
 };
 
 export default Profile;

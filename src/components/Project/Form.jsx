@@ -1,5 +1,5 @@
-import "../../styles/layouts/Form.scss";
-import PropTypes from "prop-types";
+import '../../styles/layouts/Form.scss';
+import PropTypes from 'prop-types';
 
 function Form({
   data,
@@ -11,16 +11,12 @@ function Form({
   GetAvatar,
   updateAvAutor,
   updateAvProject,
-  text,
 }) {
   const handleInput = (ev) => {
     const inputValue = ev.target.value;
     const inputId = ev.target.id;
     handleClickInput(inputValue, inputId);
   };
-  // const handleImg = () => {
-  //   updateAvAutor(avatar);
-  // }
 
   return (
     <section className="form">
@@ -156,13 +152,13 @@ function Form({
         </section>
       </form>
 
-      <section className={`card ${cardSectionIsVisible ? "" : "hidden"}`}>
-        <span className={error === "" ? "" : "red"}>
-          {error || "La tarjeta ha sido creada:"}{" "}
+      <section className={`card ${cardSectionIsVisible ? '' : 'hidden'}`}>
+        <span className={error === '' ? '' : 'red'}>
+          {error || 'La tarjeta ha sido creada:'}{' '}
         </span>
         <a
           href={cardUrl}
-          className={error !== "" ? "hidden" : ""}
+          className={error !== '' ? 'hidden' : ''}
           target="_blank"
           rel="noreferrer"
         >
@@ -173,11 +169,15 @@ function Form({
   );
 }
 Form.propTypes = {
-  data: PropTypes.object.isRequired,
-  handleClickInput: PropTypes.func.isRequired,
-  handleClickCreateCard: PropTypes.func.isRequired,
-  cardSectionIsVisible: PropTypes.bool.isRequired,
-  cardUrl: PropTypes.string.isRequired,
-  error: PropTypes.string.isRequired,
+  data: PropTypes.object,
+  handleClickInput: PropTypes.func,
+  handleClickCreateCard: PropTypes.func,
+  cardSectionIsVisible: PropTypes.bool,
+  cardUrl: PropTypes.string,
+  error: PropTypes.string,
+  GetAvatar: PropTypes.func,
+  updateAvAutor: PropTypes.func,
+  updateAvProject: PropTypes.func,
+  text: PropTypes.string,
 };
 export default Form;
