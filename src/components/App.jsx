@@ -27,7 +27,7 @@ function App() {
     image: "",
     photo: "",
   };
-  const [data, setData] = useState(dataObject);
+  const [data, setData] = useState(ls.get("dataLS", dataObject));
 
   const [error, setError] = useState("");
   const [cardSectionIsVisible, setCardSectionIsVisible] = useState(false);
@@ -40,16 +40,20 @@ function App() {
     setAvatarAutor(avatar);
     ls.set("elAvatarAutor", avatar);
     setData({ ...data, ['image']: avatar });
+    ls.set("dataLS", data);
   };
   const updateAvProject = (avatar) => {
     setAvatarProject(avatar);
     ls.set("elAvatarProject", avatar);
     setData({ ...data, ['photo']: avatar });
+    ls.set("dataLS", data);
   };
 
     const handleClickInput = (value, id) => {
       setCardSectionIsVisible(false);
       setData({ ...data, [id]: value });
+      //console.log('data', data)
+      ls.set("dataLS", data);
     };
 
     const fetchInfoCard = () => {
@@ -60,7 +64,7 @@ function App() {
       })
         .then((response) => response.json())
         .then((responseJSON) => {
-          console.log(responseJSON);
+          //console.log(responseJSON);
           if (responseJSON.success === false) {
             setError("Error en el servidor");
           } else {
