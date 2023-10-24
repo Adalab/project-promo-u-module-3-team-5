@@ -1,8 +1,10 @@
 import '../../styles/layouts/Form.scss';
 import PropTypes from 'prop-types';
+import Loading from './Loading';
 
 function Form({
   data,
+  loading,
   handleClickInput,
   handleClickCreateCard,
   cardSectionIsVisible,
@@ -151,10 +153,13 @@ function Form({
           </button>
         </section>
       </form>
-
       <section className={`card ${cardSectionIsVisible ? '' : 'hidden'}`}>
         <span className={error === '' ? '' : 'red'}>
-          {error || 'La tarjeta ha sido creada:'}{' '}
+          {loading ? (
+            <Loading loading={loading} />
+          ) : (
+            error || 'La tarjeta ha sido creada:'
+          )}
         </span>
         <a
           href={cardUrl}
@@ -170,6 +175,7 @@ function Form({
 }
 Form.propTypes = {
   data: PropTypes.object,
+  loading: PropTypes.bool,
   handleClickInput: PropTypes.func,
   handleClickCreateCard: PropTypes.func,
   cardSectionIsVisible: PropTypes.bool,

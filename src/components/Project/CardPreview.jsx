@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import '../../styles/layouts/CardPreview.scss';
 import defaultAvatar from '../../images/Avatar1.jpg';
 import defaultBackground from '../../images/Project5.jpg';
-import cover from '../../images/cover.jpeg';
-import user from '../../images/user.jpeg';
+// import cover from '../../images/cover.jpeg';
+// import user from '../../images/user.jpeg';
 
 function CardPreview({ data, avatarAutor, avatarProject }) {
   return (

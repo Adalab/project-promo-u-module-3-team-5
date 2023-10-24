@@ -1,16 +1,19 @@
-//imports dependencias, imagenes, componentes, stylos
-import '../styles/App.scss';
+//React
 import { useState } from 'react';
-import Header from './Header/Header';
+import { Route, Routes } from 'react-router';
+//services
 import ls from '../services/localStorage';
-// import Footer from "./Footer/Footer";
+
+//Components
+import Header from './Header/Header';
 import Form from './Project/Form';
 import CardPreview from './Project/CardPreview';
 import GetAvatar from './GetAvatar';
 import Landing from './Landing/Landing';
-import { Route, Routes } from 'react-router';
+// import Footer from "./Footer/Footer";
 
-// import Profile from "./Profile";
+//Styles
+import '../styles/App.scss';
 
 function App() {
   //funciones, variables, handles,
@@ -31,7 +34,8 @@ function App() {
 
   const [error, setError] = useState('');
   const [cardSectionIsVisible, setCardSectionIsVisible] = useState(false);
-  const [cardUrl, setCardUrl] = useState('https://enlace-de-muestra.es/');
+  const [cardUrl, setCardUrl] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
   const [avatarAutor, setAvatarAutor] = useState(ls.get('elAvatarAutor', ''));
   const [avatarProject, setAvatarProject] = useState(
@@ -59,6 +63,7 @@ function App() {
   };
 
   const fetchInfoCard = () => {
+    setIsLoading(true);
     fetch('https://dev.adalab.es/api/projectCard', {
       method: 'post',
       headers: { 'Content-Type': 'application/json' },
@@ -68,8 +73,10 @@ function App() {
       .then((responseJSON) => {
         //console.log(responseJSON);
         if (responseJSON.success === false) {
+          setIsLoading(false);
           setError('Error en el servidor');
         } else {
+          setIsLoading(false);
           setError('');
           setCardUrl(responseJSON.cardURL);
           // localStorage.setItem('datainfo', JSON.stringify(data));
@@ -113,6 +120,7 @@ function App() {
                 />
                 <Form
                   data={data}
+                  loading={isLoading}
                   handleClickInput={handleClickInput}
                   handleClickCreateCard={handleClickCreateCard}
                   cardSectionIsVisible={cardSectionIsVisible}
