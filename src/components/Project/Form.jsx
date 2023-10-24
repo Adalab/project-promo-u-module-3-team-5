@@ -1,15 +1,25 @@
-import '../../styles/layouts/Form.scss';
+import "../../styles/layouts/Form.scss";
 import PropTypes from "prop-types";
-import GetAvatar from "../GetAvatar";
 
-function Form({ data, handleClickInput, handleClickCreateCard, cardSectionIsVisible, cardUrl, error, avatar, updateAvatar }) {
+function Form({
+  data,
+  handleClickInput,
+  handleClickCreateCard,
+  cardSectionIsVisible,
+  cardUrl,
+  error,
+  GetAvatar,
+  updateAvAutor,
+  updateAvProject,
+  text,
+}) {
   const handleInput = (ev) => {
     const inputValue = ev.target.value;
     const inputId = ev.target.id;
     handleClickInput(inputValue, inputId);
   };
   // const handleImg = () => {
-  //   updateAvatar(avatar);
+  //   updateAvAutor(avatar);
   // }
 
   return (
@@ -125,8 +135,18 @@ function Form({ data, handleClickInput, handleClickCreateCard, cardSectionIsVisi
         </fieldset>
 
         <section className="buttons-img">
-        <GetAvatar className='btn' avatar={avatar} updateAvatar={updateAvatar} text='Subir foto de proyecto'/>            
-          <GetAvatar className='btn' avatar={avatar} updateAvatar={updateAvatar} text='Subir foto de autora'/>  
+          {/* Upload Avatar */}
+          <GetAvatar
+            className="btn"
+            updateAvatar={updateAvProject}
+            text={'Subir foto de proyecto'}
+          />
+          {/* Upload Background */}
+          <GetAvatar
+            className="btn"
+            updateAvatar={updateAvAutor}
+            text={'Subir foto de autora'}
+          />
         </section>
 
         <section className="buttons-img">
@@ -136,13 +156,13 @@ function Form({ data, handleClickInput, handleClickCreateCard, cardSectionIsVisi
         </section>
       </form>
 
-      <section className={`card ${cardSectionIsVisible ? '' : 'hidden'}`}>
-        <span className={error === '' ? '' : 'red'}>
-          {error || 'La tarjeta ha sido creada:'}{' '}
+      <section className={`card ${cardSectionIsVisible ? "" : "hidden"}`}>
+        <span className={error === "" ? "" : "red"}>
+          {error || "La tarjeta ha sido creada:"}{" "}
         </span>
         <a
           href={cardUrl}
-          className={error !== '' ? 'hidden' : ''}
+          className={error !== "" ? "hidden" : ""}
           target="_blank"
           rel="noreferrer"
         >

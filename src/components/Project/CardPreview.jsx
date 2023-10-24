@@ -1,14 +1,17 @@
 
 import "../../styles/layouts/CardPreview.scss"
+import defaultAvatar from '../../images/faviconNuevo.png';
+import defaultBackground from "../../images/defaultBackground.png";
 import cover from "../../images/cover.jpeg";
 import user from "../../images/user.jpeg";
 
-function CardPreview ({data}) {
+function CardPreview ({data, avatarAutor, avatarProject}) {
 
   
     return(
         <section className="preview">
-        <img className="image" src={cover} alt="" />
+        <img className="image" src={avatarProject ? avatarProject : defaultBackground} alt="" />
+       
 
         <section className="autor">
           <section className="info-project">
@@ -39,7 +42,7 @@ function CardPreview ({data}) {
           </section>
 
           <section className="info-autor">
-            <img className="image" src={user} alt="" />
+            <img className="image" src={avatarAutor? avatarAutor : defaultAvatar} alt="" />
             <p className="job">{data.job || "Full Stack Developer"}</p>
             <p className="name">{data.autor || "Emmelie Björklund"} </p>
           </section>

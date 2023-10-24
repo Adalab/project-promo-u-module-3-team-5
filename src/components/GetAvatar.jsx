@@ -1,9 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import defaultAvatar from '../images/faviconNuevo.png';
 import '../styles/GetAvatar.css';
 
-function GetAvatar({avatar=defaultAvatar, updateAvatar, text}) {
+function GetAvatar({updateAvatar, text}) {
   
   const fr = new FileReader();
   const myFileField = React.createRef(); 
@@ -39,16 +38,16 @@ function GetAvatar({avatar=defaultAvatar, updateAvatar, text}) {
         />
       </label>
 
-      <div
+      {/* <div
         className="get-avatar__preview"
         style={{ backgroundImage: `url(${avatar})` }}
-      ></div>
+      ></div> */}
     </div>
   );
 }
 
 GetAvatar.propTypes = {
-  avatar: PropTypes.string,
+  //avatar: PropTypes.string,
   updateAvatar: PropTypes.func.isRequired,
   text: PropTypes.string
 };

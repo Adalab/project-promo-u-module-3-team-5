@@ -2,9 +2,11 @@
 import "../styles/App.scss";
 import { useState } from "react";
 import Header from "./Header/Header";
+import ls from "../services/localStorage"
 // import Footer from "./Footer/Footer";
 import Form from "./Project/Form";
 import CardPreview from "./Project/CardPreview";
+import GetAvatar from "./GetAvatar";
 import Landing from "./Landing/Landing";
 import { Route, Routes } from "react-router";
 
@@ -22,8 +24,8 @@ function App() {
     desc: "",
     autor: "",
     job: "",
-    image: "https://placedog.net/480/580?r",
-    photo: "https://placekitten.com/600/500",
+    image: "",
+    photo: "",
   };
   const [data, setData] = useState(dataObject);
 
@@ -31,9 +33,19 @@ function App() {
   const [cardSectionIsVisible, setCardSectionIsVisible] = useState(false);
   const [cardUrl, setCardUrl] = useState("https://enlace-de-muestra.es/");
 
-  const [avatar, setAvatar] = useState("");
-  const updateAvatar = (avatar) => {
-    setAvatar(avatar);}
+  const [avatarAutor, setAvatarAutor] = useState(ls.get("elAvatarAutor", ""));
+  const [avatarProject, setAvatarProject] = useState(ls.get("elAvatarProject", ""));
+
+  const updateAvAutor = (avatar) => {
+    setAvatarAutor(avatar);
+    ls.set("elAvatarAutor", avatar);
+    setData({ ...data, ['image']: avatar });
+  };
+  const updateAvProject = (avatar) => {
+    setAvatarProject(avatar);
+    ls.set("elAvatarProject", avatar);
+    setData({ ...data, ['photo']: avatar });
+  };
 
     const handleClickInput = (value, id) => {
       setCardSectionIsVisible(false);
@@ -88,7 +100,10 @@ function App() {
               <>
                 <Header />
                 <main className="main">
-                  <CardPreview data={data} avatar={avatar} />
+                  <CardPreview 
+                    data={data}
+                    avatarAutor={avatarAutor}
+                    avatarProject={avatarProject}/>
                   <Form
                     data={data}
                     handleClickInput={handleClickInput}
@@ -96,6 +111,10 @@ function App() {
                     cardSectionIsVisible={cardSectionIsVisible}
                     cardUrl={cardUrl}
                     error={error}
+                    GetAvatar={GetAvatar} 
+                    updateAvAutor={updateAvAutor}
+                    updateAvProject={updateAvProject}
+                    /* text={text} */
                   />
                
                 </main>
@@ -105,6 +124,6 @@ function App() {
         </Routes>
       </div>
     );
-  };
+  }
 
 export default App;
